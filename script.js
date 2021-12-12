@@ -171,9 +171,14 @@ function calculateTotalPrice() {
     quantityInputOrder.forEach((q) => {
       totalPrice += menuArray[q.id].price * q.value;
     });
-    total.innerText = totalPrice;
+    const formatter = Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+    });
+    total.innerText = formatter.format(totalPrice);
   }
 }
+calculateTotalPrice();
 
 // If user press the remove button, the item will be removed from the cart
 if (removeBtn) {
@@ -187,9 +192,9 @@ if (removeBtn) {
       });
       b.closest('.menu').remove();
       localStorage.setItem('cart', JSON.stringify(cartArray));
+      calculateTotalPrice();
     });
   });
-  calculateTotalPrice();
 }
 
 // Push the items to orderArray
