@@ -24,8 +24,8 @@
       <h1>Upfood</h1>
       <nav>
         <ul>
-          <li><a href="#">CART</a></li>
-          <li><a href="#">ORDER HISTORY</a></li>
+          <li><a href="../cart.html">CART</a></li>
+          <li><a href="../history.html">ORDER HISTORY</a></li>
         </ul>
       </nav>
     </header>
@@ -49,7 +49,8 @@
                 value="-"
                 class="minus"
               /><input
-                class="quantity-field"
+              id="0"
+                class="quantity-field cart"
                 type="number"
                 step="1"
                 min="0"
@@ -59,7 +60,6 @@
               /><input class="btn plus" type="button" value="+" class="plus" />
             </div>
           </div>
-        </div>
         <div class="menu">
           <div class="menu-detail">
             <img src="../img/wagyu-burger.jpg" alt="wagyu burger" />
@@ -75,7 +75,9 @@
               value="-"
               class="minus"
             /><input
-              class="quantity-field"
+              class="quantity-field cart"
+              id="1"
+
               type="number"
               step="1"
               min="0"
@@ -100,9 +102,11 @@
               value="-"
               class="minus"
             /><input
-              class="quantity-field"
+            id="2"
+
+              class="quantity-field cart"
               type="number"
-              step="1"
+              step="2"
               min="0"
               max=""
               name="quantity"
@@ -125,7 +129,9 @@
               value="-"
               class="minus"
             /><input
-              class="quantity-field"
+            id="3"
+
+              class="quantity-field cart"
               type="number"
               step="1"
               min="0"
@@ -134,6 +140,9 @@
               value="0"
             /><input class="btn plus" type="button" value="+" class="plus" />
           </div>
+        </div>
+        <div class="cart-btn-container">
+        <button class="cart-btn">ADD TO CART</button>
         </div>
       </div>
     </main>

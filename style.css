@@ -54,7 +54,7 @@ header nav ul a {
   margin-left: 5px;
 }
 
-/* Main */
+/* Main - index*/
 main {
   margin-bottom: 5rem;
 }
@@ -94,13 +94,14 @@ main .categories {
   padding: 150px;
 }
 
+/* Main - details */
 main .menu {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 main .menu {
-  margin-bottom: 3rem;
+  margin-bottom: 5rem;
 }
 .menu img {
   width: 250px;
@@ -140,6 +141,43 @@ main .menu {
 .quantity input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   -moz-appearance: none;
+}
+main .cart-btn-container,
+.order-btn-container {
+  display: flex;
+  justify-content: center;
+}
+main .cart-btn,
+.order-btn {
+  font-family: 'Fira Sans Condensed', sans-serif;
+  font-size: 1.2rem;
+  color: #ecf0f1;
+  padding: 20px;
+  background: #34495e;
+  border: none;
+  border-radius: 5px;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+
+/* Main - Cart */
+.cart-main .menu {
+  position: relative;
+}
+.cart-main .remove-btn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  color: #fff;
+  background: #e74c3c;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.cart-main .total {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-align: center;
 }
 
 /* Footer */
