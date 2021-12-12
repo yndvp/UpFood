@@ -56,7 +56,7 @@ header nav ul a {
 
 /* Main */
 main {
-  margin-bottom: 2rem;
+  margin-bottom: 5rem;
 }
 main h2 {
   text-align: center;
@@ -67,13 +67,13 @@ main h2 {
 main .categories {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
 }
 .category {
   position: relative;
   width: 480px;
   height: 380px;
-  margin-bottom: 3.5rem;
+  margin: 10px;
 }
 .category h4 {
   position: absolute;
@@ -84,7 +84,7 @@ main .categories {
   font-size: 2rem;
   padding: 30px 60px;
   background: #34495e8e;
-  transition: all 0.4s;
+  transition: all 0.6s;
 }
 .category img {
   width: 100%;
@@ -92,6 +92,54 @@ main .categories {
 }
 .category a:hover h4 {
   padding: 150px;
+}
+
+main .menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+main .menu {
+  margin-bottom: 3rem;
+}
+.menu img {
+  width: 250px;
+  height: 250px;
+}
+.menu .menu-detail {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+}
+.menu .menu-detail-info {
+  margin-left: 50px;
+  display: flex;
+  flex-direction: column;
+}
+.menu .menu-detail-info .name {
+  margin-bottom: 3rem;
+}
+.quantity .btn {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: #34495e;
+  color: #ecf0f1;
+  border-radius: 5px;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+.quantity-field {
+  width: 50px;
+  height: 40px;
+  font-size: 1.2rem;
+  text-align: center;
+  border: none;
+}
+.quantity input::-webkit-outer-spin-button,
+.quantity input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }
 
 /* Footer */
