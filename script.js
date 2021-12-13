@@ -39,9 +39,11 @@ const orderArray = [];
 // Variables
 const cartBtn = document.querySelector('.cart-btn');
 const ordersContainer = document.querySelector('.cart-main .menus');
+const hisoryContainer = document.querySelector('.history-main .orders');
 
 // Initialize cart items
 loadCartItems();
+loadOrderHistory();
 
 const minusBtn = document.querySelectorAll('.btn.minus');
 const plusBtn = document.querySelectorAll('.btn.plus');
@@ -245,3 +247,28 @@ if (orderBtn) {
 /* 
     Author: Bojitha Umagiliya
 */
+function loadOrderHistory() {
+  let html = '';
+  const loadedItems = localStorage.getItem('order');
+  if (loadedItems) {
+    const parsedItems = JSON.parse(loadedItems);
+
+    parsedItems.forEach((o) => {
+      html += `<div class="menu">
+      <div class="menu-detail">
+        <img src=${o.image} alt="${o.name.toLowerCase()}" />
+        <div class="menu-detail-info">
+          <h4 class="name">${o.name}</h4>
+          <div class="price">$ ${o.price}0 * ${o.quantity}</div>
+        </div>
+      </div>
+      <div class="date">${o.date}</div>
+    </div>`;
+    });
+  } else {
+    html = '<h3>There is no order history.</h3>';
+  }
+  if (hisoryContainer) {
+    hisoryContainer.insertAdjacentHTML('afterbegin', html);
+  }
+}

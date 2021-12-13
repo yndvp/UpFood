@@ -180,6 +180,12 @@ main .cart-btn,
   text-align: center;
 }
 
+/* Main - History */
+.history-main .date {
+  font-size: 1.4rem;
+  color: #2980b9;
+}
+
 /* Footer */
 footer {
   background: #34495e;
