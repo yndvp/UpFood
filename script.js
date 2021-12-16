@@ -1,7 +1,3 @@
-/* 
-    Author: Yunna Jang 
-*/
-
 // Menu objects
 const cheeseBurger = {
   id: 0,
@@ -31,8 +27,109 @@ const VeggieBurger = {
   price: 4.5,
   quantity: 0,
 };
+const bonelessChicken = {
+  id: 4,
+  name: 'Boneless Chicken',
+  image: 'img/boneless-chicken.png',
+  price: 32.9,
+  quantity: 0,
+};
+const soyGarlicChicken = {
+  id: 5,
+  name: 'Soy Garlic Chicken',
+  image: 'img/soy-garlic-chicken.png',
+  price: 34.9,
+  quantity: 0,
+};
+const spicyChicken = {
+  id: 6,
+  name: 'Spicy Chicken',
+  image: 'img/spicy-chicken.jpg',
+  price: 35.9,
+  quantity: 0,
+};
+const curryChicken = {
+  id: 7,
+  name: 'Curry Chicken',
+  image: 'img/curry-chicken.jpg',
+  price: 31.9,
+  quantity: 0,
+};
+const pepperoniPizza = {
+  id: 8,
+  name: 'Pepperoni Pizza',
+  image: 'img/pepperoni-pizza.jpg',
+  price: 14.9,
+  quantity: 0,
+};
+const hawaiianPizza = {
+  id: 9,
+  name: 'Hawaiian Pizza',
+  image: 'img/hawaiian-pizza.jpg',
+  price: 15.5,
+  quantity: 0,
+};
+const steakPizza = {
+  id: 10,
+  name: 'Steak Pizza',
+  image: 'img/steak-pizza.jpg',
+  price: 18.6,
+  quantity: 0,
+};
+const bbpPizza = {
+  id: 11,
+  name: 'BBQ Pizza',
+  image: 'img/bbq-pizza.jpg',
+  price: 17.9,
+  quantity: 0,
+};
+const riceNoodles = {
+  id: 12,
+  name: 'Rice Noodles',
+  image: 'img/rice-noodles.jpg',
+  price: 12.9,
+  quantity: 0,
+};
+const blackBeanNoodles = {
+  id: 13,
+  name: 'Black Bean Noodles',
+  image: 'img/black-bean-noodles.jpeg',
+  price: 14.2,
+  quantity: 0,
+};
+const ramenNoodles = {
+  id: 14,
+  name: 'Ramen Noodles',
+  image: 'img/ramen-noodles.jpg',
+  price: 15.9,
+  quantity: 0,
+};
+const chickenNoodles = {
+  id: 15,
+  name: 'Chicken Noodles',
+  image: 'img/chicken-noodles.jpg',
+  price: 13.5,
+  quantity: 0,
+};
 
-const menuArray = [cheeseBurger, wagyuBurger, spicyChickenBurger, VeggieBurger];
+const menuArray = [
+  cheeseBurger,
+  wagyuBurger,
+  spicyChickenBurger,
+  VeggieBurger,
+  bonelessChicken,
+  soyGarlicChicken,
+  spicyChicken,
+  curryChicken,
+  pepperoniPizza,
+  hawaiianPizza,
+  steakPizza,
+  bbpPizza,
+  riceNoodles,
+  blackBeanNoodles,
+  ramenNoodles,
+  chickenNoodles,
+];
 let cartArray = [];
 const orderArray = [];
 
@@ -40,11 +137,9 @@ const orderArray = [];
 const cartBtn = document.querySelector('.cart-btn');
 const ordersContainer = document.querySelector('.cart-main .menus');
 const hisoryContainer = document.querySelector('.history-main .orders');
-
 // Initialize cart items
 loadCartItems();
 loadOrderHistory();
-
 const minusBtn = document.querySelectorAll('.btn.minus');
 const plusBtn = document.querySelectorAll('.btn.plus');
 const quantityInput = document.querySelectorAll('.quantity-field');
@@ -75,7 +170,6 @@ plusBtn.forEach((i) => {
 
 // Push the items to cartArray
 const pushToCart = function (i, q) {
-  console.log(cartArray);
   let loadedItems = localStorage.getItem('cart');
   if (!loadedItems) {
     localStorage.setItem('cart', JSON.stringify(cartArray));
@@ -85,8 +179,7 @@ const pushToCart = function (i, q) {
 
   // If cartArray already include the same menu, just update the quantity
   if (Array.from(parsedItems).some((p) => p.id == i)) {
-    menuArray[i].quantity = q;
-    parsedItems.find((o) => o.id == i).quantity = q;
+    parsedItems.find((o) => o.id == i).quantity += q;
   }
   // Put quantity of food object and push it into cartArray
   else {
@@ -170,7 +263,7 @@ function loadCartItems() {
 function calculateTotalPrice() {
   if (total) {
     let totalPrice = 0;
-    quantityInputOrder.forEach((q) => {
+    document.querySelectorAll('.quantity-field.order').forEach((q) => {
       totalPrice += menuArray[q.id].price * q.value;
     });
     const formatter = Intl.NumberFormat('en-US', {
@@ -220,8 +313,15 @@ const pushToOrder = function (i, q) {
   const month = months[d.getMonth()];
   const day = d.getDate();
   menuArray[i].date = `${month} ${day}`;
-  orderArray.push(menuArray[i]);
-  localStorage.setItem('order', JSON.stringify(orderArray));
+
+  let loadedItems = localStorage.getItem('order');
+  if (!loadedItems) {
+    localStorage.setItem('order', JSON.stringify(orderArray));
+    loadedItems = localStorage.getItem('order');
+  }
+  const parsedItems = JSON.parse(loadedItems);
+  parsedItems.push(menuArray[i]);
+  localStorage.setItem('order', JSON.stringify(parsedItems));
 };
 
 // When user click the place order button
@@ -244,9 +344,7 @@ if (orderBtn) {
   });
 }
 
-/* 
-    Author: Bojitha Umagiliya
-*/
+// Retrieve ordered items from local storage and display on the history page
 function loadOrderHistory() {
   let html = '';
   const loadedItems = localStorage.getItem('order');
@@ -255,15 +353,15 @@ function loadOrderHistory() {
 
     parsedItems.forEach((o) => {
       html += `<div class="menu">
-      <div class="menu-detail">
-        <img src=${o.image} alt="${o.name.toLowerCase()}" />
-        <div class="menu-detail-info">
-          <h4 class="name">${o.name}</h4>
-          <div class="price">$ ${o.price}0 * ${o.quantity}</div>
+        <div class="menu-detail">
+          <img src=${o.image} alt="${o.name.toLowerCase()}" />
+          <div class="menu-detail-info">
+            <h4 class="name">${o.name}</h4>
+            <div class="price">$ ${o.price}0 * ${o.quantity}</div>
+          </div>
         </div>
-      </div>
-      <div class="date">${o.date}</div>
-    </div>`;
+        <div class="date">${o.date}</div>
+      </div>`;
     });
   } else {
     html = '<h3>There is no order history.</h3>';
